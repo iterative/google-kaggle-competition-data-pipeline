@@ -42,3 +42,24 @@ pip install -r requirements.txt
 ```
 
 Download benchmark data from [GUIE Custom data](https://www.kaggle.com/datasets/odins0n/guie-custom-data?select=images_128) (`images_128` directory). Or run `dvc pull` if you have AWS credentials.
+
+
+### How to run the project
+The project can be run by running the DVC pipeline with
+```
+dvc repro
+```
+or with
+```
+dvc exp run
+```
+
+### DVC pipeline
+The project is implemented into a DVC pipeline. The definition of the pipeline consists of two parts:
+
+- `dvc.yaml` --- main file defining stages with: cli command, dependencies and outputs
+- `params.yaml` --- parameters of the pipeline such as paths, split ratios etc.
+
+Each stage is defined in a separate python file in `src` folder. At this moment there are two stages:
+- `unzip_dataset` - unzips file with all data
+- `split_dataset` - splits data to *Similarity index pipeline* and to *ML pipeline*. And ML pipeline data further to *train* and *test* datasets.
