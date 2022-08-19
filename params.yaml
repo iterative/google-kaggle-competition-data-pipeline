@@ -6,11 +6,11 @@ unzip_dataset:
 
 split_dataset:
   index_search:
-    output_folder: index_search_splitted
+    output_folder: index_search
     index_search_ratio: 0.3
     seed: 1337
   ML_model:
-    output_folder: ML_splitted
+    output_folder: ML_model
     seed: 1337
     test_ratio: 0.3
   

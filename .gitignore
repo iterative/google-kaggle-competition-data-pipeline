@@ -132,5 +132,5 @@ dmypy.json
 
 data/Benchmarks.zip
 data/data_benchmark
-data/index_search_splitted
-data/ML_splitted
+data/ML_model
+data/index_search

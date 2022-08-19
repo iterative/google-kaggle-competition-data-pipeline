@@ -24,33 +24,33 @@ stages:
     cmd: python src/split_dataset.py
     deps:
     - path: data/data_benchmark
-      md5: d751713988987e9331980363e24189ce.dir
-      size: 0
-      nfiles: 0
+      md5: 2d35f1eb05bc40c5bb7ec7e7d12cc44f.dir
+      size: 294272494
+      nfiles: 9347
     - path: src/split_dataset.py
-      md5: c66903b478d472397472c4f2f3e850f5
-      size: 1845
+      md5: 060a172963cb9cedcacf018786f4203e
+      size: 2256
     params:
       params.yaml:
         data_folder: data
         split_dataset:
           index_search:
-            output_folder: index_search_splitted
+            output_folder: index_search
             index_search_ratio: 0.3
             seed: 1337
           ML_model:
-            output_folder: ML_splitted
+            output_folder: ML_model
             seed: 1337
             test_ratio: 0.3
         unzip_dataset:
           input_file: Benchmarks.zip
           output_folder: data_benchmark
     outs:
-    - path: data/ML_splitted
+    - path: data/ML_model
       md5: cff20f4b24874586b3fd17e51a92c673.dir
       size: 205297725
       nfiles: 6540
-    - path: data/index_search_splitted
-      md5: db6fd606e7c0e5cac5949fdd59ce89ad.dir
+    - path: data/index_search
+      md5: 398c05d801cb2959f20430a7189b6e7d.dir
       size: 88974769
       nfiles: 2807
