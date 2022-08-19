@@ -7,50 +7,43 @@ stages:
       md5: 57eb3a44aff1d10052db98b1742ea36a
       size: 293027729
     - path: src/unzip_dataset.py
-      md5: 72a86f04e959d196868548ea8032cb14
-      size: 697
+      md5: 245b9a72221b7d50a61ee05ea37eb778
+      size: 719
     params:
       params.yaml:
         data_folder: data
         unzip_dataset:
           input_file: Benchmarks.zip
-          output_folder: data_benchmark
+          output_folder: benchmark_unzip
     outs:
-    - path: data/data_benchmark
+    - path: data/benchmark_unzip
       md5: 2d35f1eb05bc40c5bb7ec7e7d12cc44f.dir
       size: 294272494
       nfiles: 9347
   split_dataset:
     cmd: python src/split_dataset.py
     deps:
-    - path: data/data_benchmark
+    - path: data/benchmark_unzip
       md5: 2d35f1eb05bc40c5bb7ec7e7d12cc44f.dir
       size: 294272494
       nfiles: 9347
     - path: src/split_dataset.py
-      md5: 060a172963cb9cedcacf018786f4203e
-      size: 2202
+      md5: e1e0d2c81db3e6c4b626de95c98dd9c7
+      size: 2960
     params:
       params.yaml:
         data_folder: data
         split_dataset:
-          index_search:
-            output_folder: index_search
-            index_search_ratio: 0.3
-            seed: 1337
-          ML_model:
-            output_folder: ML_model
-            seed: 1337
-            test_ratio: 0.3
+          seed: 1337
+          test_ratio: 0.2
+          train_ratio: 0.6
+          val_ratio: 0.2
+          output_folder: benchmark_split
         unzip_dataset:
           input_file: Benchmarks.zip
-          output_folder: data_benchmark
+          output_folder: benchmark_unzip
     outs:
-    - path: data/ML_model
-      md5: cff20f4b24874586b3fd17e51a92c673.dir
-      size: 205297725
-      nfiles: 6540
-    - path: data/index_search
-      md5: 398c05d801cb2959f20430a7189b6e7d.dir
-      size: 88974769
-      nfiles: 2807
+    - path: data/benchmark_split
+      md5: 22df0db38f0b7cf7486499b69e391c25.dir
+      size: 294272494
+      nfiles: 9347

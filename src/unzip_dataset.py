@@ -7,12 +7,12 @@ import yaml
 def main(params):
     stage_params = yaml.safe_load(open(params.params))
     data_folder = Path(stage_params["data_folder"])
-    input_file = Path(stage_params["unzip_dataset"]["input_file"])
-    output_folder = Path(stage_params["unzip_dataset"]["output_folder"])
+    input_file = data_folder/Path(stage_params["unzip_dataset"]["input_file"])
+    output_folder = data_folder/Path(stage_params["unzip_dataset"]["output_folder"])
 
-    data_archive_path = (data_folder/input_file).with_suffix(".zip")
+    data_archive_path = (input_file).with_suffix(".zip")
     zipfile = ZipFile(data_archive_path)
-    zipfile.extractall(path=data_folder/output_folder)
+    zipfile.extractall(path=output_folder)
 
 
 if __name__ == "__main__":

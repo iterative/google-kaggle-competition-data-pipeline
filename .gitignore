@@ -130,7 +130,9 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-data/Benchmarks.zip
+data/benchmark.zip
 data/data_benchmark
 data/ML_model
 data/index_search
+data/benchmark_unzip
+data/benchmark_split

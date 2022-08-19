@@ -1,18 +1,12 @@
 data_folder: data
 
 unzip_dataset:
-  input_file: Benchmarks.zip
-  output_folder: data_benchmark
+  input_file: benchmark.zip
+  output_folder: benchmark_unzip
 
 split_dataset:
-  index_search:
-    output_folder: index_search
-    index_search_ratio: 0.3
-    seed: 1337
-  ML_model:
-    output_folder: ML_model
-    seed: 1337
-    test_ratio: 0.3
-  
-
-
+  seed: 1337
+  test_ratio: 0.2
+  train_ratio: 0.6
+  val_ratio: 0.2
+  output_folder: benchmark_split
