@@ -3,17 +3,17 @@ stages:
   unzip_dataset:
     cmd: python src/unzip_dataset.py
     deps:
-    - path: data/Benchmarks.zip
+    - path: data/benchmark.zip
       md5: 57eb3a44aff1d10052db98b1742ea36a
       size: 293027729
     - path: src/unzip_dataset.py
       md5: 245b9a72221b7d50a61ee05ea37eb778
-      size: 719
+      size: 697
     params:
       params.yaml:
         data_folder: data
         unzip_dataset:
-          input_file: Benchmarks.zip
+          input_file: benchmark.zip
           output_folder: benchmark_unzip
     outs:
     - path: data/benchmark_unzip
@@ -28,8 +28,8 @@ stages:
       size: 294272494
       nfiles: 9347
     - path: src/split_dataset.py
-      md5: e1e0d2c81db3e6c4b626de95c98dd9c7
-      size: 2960
+      md5: 5720b831ff10e5ae4cc87a5c50654167
+      size: 949
     params:
       params.yaml:
         data_folder: data
@@ -40,7 +40,7 @@ stages:
           val_ratio: 0.2
           output_folder: benchmark_split
         unzip_dataset:
-          input_file: Benchmarks.zip
+          input_file: benchmark.zip
           output_folder: benchmark_unzip
     outs:
     - path: data/benchmark_split
