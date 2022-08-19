@@ -8,7 +8,7 @@ stages:
       size: 293027729
     - path: src/unzip_dataset.py
       md5: 72a86f04e959d196868548ea8032cb14
-      size: 719
+      size: 697
     params:
       params.yaml:
         data_folder: data
@@ -29,7 +29,7 @@ stages:
       nfiles: 9347
     - path: src/split_dataset.py
       md5: 060a172963cb9cedcacf018786f4203e
-      size: 2256
+      size: 2202
     params:
       params.yaml:
         data_folder: data
