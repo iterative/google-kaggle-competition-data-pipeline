@@ -1,37 +1,24 @@
-### Data pipeline for Kaggle competition
+# Data pipeline for Kaggle competition
 
-This repository only purpose is to prepare data for the [Kaggle competition](https://www.kaggle.com/competitions/google-universal-image-embedding). This data is further used in the:
+This repository shall prepare data for the [Kaggle competition](https://www.kaggle.com/competitions/google-universal-image-embedding). This data is further used in the:
 - [ML pipeline](https://github.com/iterative/google-kaggle-competition)
 - [Similarity index pipeline](https://github.com/mnrozhkov/google-universal-image-embedding)
 
+The data that is used in this repository comes from [Custom dataset](https://www.kaggle.com/datasets/odins0n/guie-custom-data?select=images_128). It covers all the nine classes that the competition mentions.
 
-### Inputs and outputs
-The input to the pipeline is `Benchmarks.zip` file which comes from [Custom dataset](https://www.kaggle.com/datasets/odins0n/guie-custom-data?select=images_128). It covers all the nine classes that the competition mentions. It can be either downloaded manually or with `dvc pull` command.
+## DVC pipeline
+The project is implemented in a DVC pipeline. The definition of the pipeline consists of two parts:
 
-The output of the pipeline is a splitted dataset with the following folder structure
-```
-index_search/
-    apparel/
-        ...
-    artwork/
-        ...
-    ...
-    toys/
-        ...
-train_ml/
-    apparel/
-        ...
-    artwork/
-        ...
-    ...
-    toys/
-        ...
-```
+- `dvc.yaml` --- main file defining stages with: cli command, dependencies and outputs
+- `params.yaml` --- parameters of the pipeline such as paths, split ratios etc.
+
+Each stage is defined in a separate python file in `src` folder. At this moment there are two stages:
+- `unzip_dataset` - unzips file with all data
+- `split_dataset` - splits data to train/val/test datasets. The split ratio is defined in `params.yaml` file.
+- `zip_dataset` - zips the train/val/test folders from the previous stage into one zip file.
 
 
-which is done with [split-folders](https://github.com/jfilter/split-folders) Python package.
-
-### How to setup local environment
+### How to setup the local environment for this pipeline
 Сreate and activate a virtual environment
 
 ```
@@ -41,25 +28,92 @@ pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-Download benchmark data from [GUIE Custom data](https://www.kaggle.com/datasets/odins0n/guie-custom-data?select=images_128) (`images_128` directory). Or run `dvc pull` if you have AWS credentials.
-
+Download the input data (`benchmark.zip` file) into your local folder `data` with
+```
+dvc get https://github.com/iterative/google-kaggle-competition-data-pipeline data/benchmark.zip -o data
+```
+You also can prepare your own custom data. To do that, you need to make sure that the zip file contains the folder structure described in [Input to the pipeline](#Input-to-the-pipeline) section.
 
 ### How to run the project
 The project can be run by running the DVC pipeline with
 ```
 dvc repro
 ```
-or with
+
+### Input to the pipeline
+The input to the pipeline is a zip file that shall contain the following folder structure (the naming of the folder classes or images does not matter):
 ```
-dvc exp run
+apparel/
+    0.png
+    1.png
+    ...
+artwork/
+    0.png
+    1.png
+    ...
+toys/
+    ...
 ```
 
-### DVC pipeline
-The project is implemented into a DVC pipeline. The definition of the pipeline consists of two parts:
+The filepath to the zip file is specified in `params.yaml` file, under the key `unzip_dataset.input_file`. The input zip file is in our case named `benchmarks.zip` 
 
-- `dvc.yaml` --- main file defining stages with: cli command, dependencies and outputs
-- `params.yaml` --- parameters of the pipeline such as paths, split ratios etc.
+If you are more interested how the `dvc` command works in this case, you may read more in [Data registry documentation](https://dvc.org/doc/use-cases/data-registry#data-registry).
 
-Each stage is defined in a separate python file in `src` folder. At this moment there are two stages:
-- `unzip_dataset` - unzips file with all data
-- `split_dataset` - splits data to *Similarity index pipeline* and to *ML pipeline*. And ML pipeline data further to *train* and *test* datasets.
+
+### Output of the pipeline
+The output of the pipeline is a zip file that contains split dataset with the following folder structure
+```
+train/
+    apparel/
+        1.png
+        ...
+    artwork/
+        1.png
+        ...
+    ...
+    toys/
+        1.png
+        ...
+val/
+    apparel/
+        0.png
+        ...
+    artwork/
+        0.png
+        ...
+    ...
+    toys/
+        0.png
+        ...
+test/
+    apparel/
+        6.png
+        ...
+    artwork/
+        14.png
+        ...
+    ...
+    toys/
+        14.png
+        ...
+```
+Note that the image names may differ if you use different seed. Also, note that if you use your custom dataset the names of the classes may differ. The filepath to the output zip file is specified in `params.yaml` file.
+
+## How to setup local environment for a different pipeline
+In case, you would like to use the output of this pipeline, you need to set up your local environment as follows
+
+Сreate, activate a virtual environment, and install dvc package.
+```
+python -m venv .venv
+source .venv/bin/activate
+pip install --upgrade pip
+pip install dvc[s3]
+```
+
+Initialize the folder with `git` and `dvc` and download the prepared data (no credentials are required)
+```
+git init
+dvc init
+dvc get https://github.com/iterative/google-kaggle-competition-data-pipeline data/benchmark_split.zip
+```
+You may also be interested in [`dvc import` command](https://dvc.org/doc/use-cases/data-registry#data-import-workflow) in case you would like to integrate this data into a DVC pipeline.
