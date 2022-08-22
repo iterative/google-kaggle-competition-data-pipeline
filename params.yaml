@@ -10,3 +10,6 @@ split_dataset:
   train_ratio: 0.6
   val_ratio: 0.2
   output_folder: benchmark_split
+
+zip_dataset:
+  output_file: benchmark_split.zip

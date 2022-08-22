@@ -24,4 +24,13 @@ stages:
       - split_dataset
       - unzip_dataset
 
-  
+  zip_dataset:
+    cmd: python src/zip_dataset.py
+    outs:
+    - ${data_folder}/${zip_dataset.output_file}
+    deps:
+    - ${data_folder}/${split_dataset.output_folder}
+    - src/zip_dataset.py
+    params:
+    - data_folder
+    - zip_dataset
