@@ -3,7 +3,7 @@ stages:
   unzip_dataset:
     cmd: python src/unzip_dataset.py
     deps:
-    - path: data/benchmark.zip
+    - path: data/baseline.zip
       md5: 57eb3a44aff1d10052db98b1742ea36a
       size: 293027729
     - path: src/unzip_dataset.py
@@ -13,17 +13,17 @@ stages:
       params.yaml:
         data_folder: data
         unzip_dataset:
-          input_file: benchmark.zip
-          output_folder: benchmark_unzip
+          input_file: baseline.zip
+          output_folder: baseline_unzip
     outs:
-    - path: data/benchmark_unzip
+    - path: data/baseline_unzip
       md5: 2d35f1eb05bc40c5bb7ec7e7d12cc44f.dir
       size: 294272494
       nfiles: 9347
   split_dataset:
     cmd: python src/split_dataset.py
     deps:
-    - path: data/benchmark_unzip
+    - path: data/baseline_unzip
       md5: 2d35f1eb05bc40c5bb7ec7e7d12cc44f.dir
       size: 294272494
       nfiles: 9347
@@ -38,19 +38,19 @@ stages:
           test_ratio: 0.2
           train_ratio: 0.6
           val_ratio: 0.2
-          output_folder: benchmark_split
+          output_folder: baseline_split
         unzip_dataset:
-          input_file: benchmark.zip
-          output_folder: benchmark_unzip
+          input_file: baseline.zip
+          output_folder: baseline_unzip
     outs:
-    - path: data/benchmark_split
+    - path: data/baseline_split
       md5: 22df0db38f0b7cf7486499b69e391c25.dir
       size: 294272494
       nfiles: 9347
   zip_dataset:
     cmd: python src/zip_dataset.py
     deps:
-    - path: data/benchmark_split
+    - path: data/baseline_split
       md5: 22df0db38f0b7cf7486499b69e391c25.dir
       size: 294272494
       nfiles: 9347
@@ -61,8 +61,8 @@ stages:
       params.yaml:
         data_folder: data
         zip_dataset:
-          output_file: benchmark_split.zip
+          output_file: baseline_split.zip
     outs:
-    - path: data/benchmark_split.zip
-      md5: e6ab71bfa86710a64d1acf2b4b79a9b5
+    - path: data/baseline_split.zip
+      md5: 96670bdf27f2739805638c65e79b6597
       size: 292752584

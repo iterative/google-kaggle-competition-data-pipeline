@@ -1,15 +1,15 @@
 data_folder: data
 
 unzip_dataset:
-  input_file: benchmark.zip
-  output_folder: benchmark_unzip
+  input_file: baseline.zip
+  output_folder: baseline_unzip
 
 split_dataset:
   seed: 1337
   test_ratio: 0.2
   train_ratio: 0.6
   val_ratio: 0.2
-  output_folder: benchmark_split
+  output_folder: baseline_split
 
 zip_dataset:
-  output_file: benchmark_split.zip
+  output_file: baseline_split.zip
