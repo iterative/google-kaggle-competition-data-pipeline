@@ -30,7 +30,7 @@ pip install -r requirements.txt
 
 Download the input data (`baseline.zip` file) into your local folder `data` with
 ```
-dvc get https://github.com/iterative/google-kaggle-competition-data-pipeline data/baseline.zip -o data
+dvc get https://github.com/iterative/google-kaggle-competition-data-pipeline data/baseline.zip -o data --rev v1.0
 ```
 You also can prepare your own custom data. To do that, you need to make sure that the zip file contains the folder structure described in [Input to the pipeline](#Input-to-the-pipeline) section.
 
@@ -114,6 +114,6 @@ Initialize the folder with `git` and `dvc` and download the prepared data (no cr
 ```
 git init
 dvc init
-dvc get https://github.com/iterative/google-kaggle-competition-data-pipeline data/baseline_split.zip
+dvc get https://github.com/iterative/google-kaggle-competition-data-pipeline data/baseline_split.zip --rev v1.0
 ```
 You may also be interested in [`dvc import` command](https://dvc.org/doc/use-cases/data-registry#data-import-workflow) in case you would like to integrate this data into a DVC pipeline.
