@@ -28,9 +28,9 @@ pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-Download the input data (`benchmark.zip` file) into your local folder `data` with
+Download the input data (`baseline.zip` file) into your local folder `data` with
 ```
-dvc get https://github.com/iterative/google-kaggle-competition-data-pipeline data/benchmark.zip -o data
+dvc get https://github.com/iterative/google-kaggle-competition-data-pipeline data/baseline.zip -o data
 ```
 You also can prepare your own custom data. To do that, you need to make sure that the zip file contains the folder structure described in [Input to the pipeline](#Input-to-the-pipeline) section.
 
@@ -55,7 +55,7 @@ toys/
     ...
 ```
 
-The filepath to the zip file is specified in `params.yaml` file, under the key `unzip_dataset.input_file`. The input zip file is in our case named `benchmarks.zip` 
+The filepath to the zip file is specified in `params.yaml` file, under the key `unzip_dataset.input_file`. The input zip file is in our case named `baseline.zip` 
 
 If you are more interested how the `dvc` command works in this case, you may read more in [Data registry documentation](https://dvc.org/doc/use-cases/data-registry#data-registry).
 
@@ -114,6 +114,6 @@ Initialize the folder with `git` and `dvc` and download the prepared data (no cr
 ```
 git init
 dvc init
-dvc get https://github.com/iterative/google-kaggle-competition-data-pipeline data/benchmark_split.zip
+dvc get https://github.com/iterative/google-kaggle-competition-data-pipeline data/baseline_split.zip
 ```
 You may also be interested in [`dvc import` command](https://dvc.org/doc/use-cases/data-registry#data-import-workflow) in case you would like to integrate this data into a DVC pipeline.
