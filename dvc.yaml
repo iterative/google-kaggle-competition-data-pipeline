@@ -14,8 +14,7 @@ stages:
   split_dataset:
     cmd: python src/split_dataset.py
     outs:
-    - ${data_folder}/${split_dataset.output_folder}:
-        cache: false
+    - ${data_folder}/${split_dataset.output_folder}
     deps:
       - ${data_folder}/${unzip_dataset.output_folder}
       - src/split_dataset.py
