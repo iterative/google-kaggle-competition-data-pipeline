@@ -8,7 +8,7 @@ stages:
       size: 293027729
     - path: src/unzip_dataset.py
       md5: 245b9a72221b7d50a61ee05ea37eb778
-      size: 697
+      size: 719
     params:
       params.yaml:
         data_folder: data
@@ -29,7 +29,7 @@ stages:
       nfiles: 9347
     - path: src/split_dataset.py
       md5: 5720b831ff10e5ae4cc87a5c50654167
-      size: 949
+      size: 977
     params:
       params.yaml:
         data_folder: data
@@ -56,7 +56,7 @@ stages:
       nfiles: 9347
     - path: src/zip_dataset.py
       md5: 5c467ef300423e6f11324d1236a8af8e
-      size: 778
+      size: 800
     params:
       params.yaml:
         data_folder: data
@@ -64,5 +64,5 @@ stages:
           output_file: baseline_split.zip
     outs:
     - path: data/baseline_split.zip
-      md5: a10dceec1b22b1b3f4bc08e549ddf978
+      md5: 60478df48b25731fef2d7bffc9c3a577
       size: 292752584
