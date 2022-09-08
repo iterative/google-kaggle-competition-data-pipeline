@@ -1,0 +1,1 @@
+Original source: https://www.kaggle.com/datasets/kaiska/apparel-dataset?select=black_dress
