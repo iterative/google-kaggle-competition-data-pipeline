@@ -1,0 +1,1 @@
+Original source: Image width changed to 350 from https://www.kaggle.com/datasets/confirm/google-landmark-dataset-v2-micro
