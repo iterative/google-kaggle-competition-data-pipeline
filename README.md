@@ -6,6 +6,7 @@ Available datasets:
 freiburg_groceries - https://paperswithcode.com/dataset/freiburg-groceries
 kaggle_130k - https://www.kaggle.com/datasets/rhtsingh/google-universal-image-embeddings-128x128
 kais_apparel - https://www.kaggle.com/datasets/kaiska/apparel-dataset?select=black_dress
+vision_furniture - https://www.kaggle.com/competitions/day-3-kaggle-competition/overview
 ```
 Download with
 ```
