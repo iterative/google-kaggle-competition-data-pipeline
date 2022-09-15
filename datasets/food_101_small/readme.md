@@ -1,0 +1,1 @@
+Original source: First 100 images from each category at https://www.kaggle.com/datasets/kmader/food41?select=images 

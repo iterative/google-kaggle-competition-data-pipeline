@@ -1,5 +1,23 @@
 # Data pipeline for Kaggle competition
 
+## TLDR
+Available datasets:
+```
+food_101_small - https://www.kaggle.com/datasets/kmader/food41?select=images
+freiburg_groceries - https://paperswithcode.com/dataset/freiburg-groceries
+google_landmarks_v2_micro - https://www.kaggle.com/datasets/confirm/google-landmark-dataset-v2-micro
+kaggle_130k - https://www.kaggle.com/datasets/rhtsingh/google-universal-image-embeddings-128x128
+kais_apparel - https://www.kaggle.com/datasets/kaiska/apparel-dataset?select=black_dress
+vision_furniture - https://www.kaggle.com/competitions/day-3-kaggle-competition/overview
+```
+Download with
+```
+dvc get https://github.com/iterative/google-kaggle-competition-data-pipeline datasets/<dataset_name> -o datasets --rev <commit_hash>
+```
+
+
+## Introduction
+
 This repository shall prepare data for the [Kaggle competition](https://www.kaggle.com/competitions/google-universal-image-embedding). This data is further used in the:
 - [ML pipeline](https://github.com/iterative/google-kaggle-competition)
 - [Similarity index pipeline](https://github.com/mnrozhkov/google-universal-image-embedding)
