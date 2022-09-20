@@ -9,9 +9,9 @@ setup(
     # Needed to actually package something
     packages=['dataset_utils'],
     # Needed for dependencies
-    #install_requires=['numpy', 'fiftyone'],
+    install_requires=['numpy', 'fiftyone'],
     # *strongly* suggested for sharing
-    version='0.1',
+    version='0.2',
     # The license can be anything you like
     license='MIT',
     description='Python package with utility functions to work with datasets and Voxel51',

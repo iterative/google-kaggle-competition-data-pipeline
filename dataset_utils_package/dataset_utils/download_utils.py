@@ -6,7 +6,7 @@ from subprocess import call
 
 
 def prepare_dataset(dataset_name: str, output_path:Path, partitions: List[int]=list(range(0,10))):
-    """Prepare and unzip dataset.
+    """Downloads dataset, unzips it and prepares labels for it.
 
     Args:
         dataset_name (str): Name of the dataset from https://github.com/iterative/google-kaggle-competition-data-pipeline/tree/main/datasets
