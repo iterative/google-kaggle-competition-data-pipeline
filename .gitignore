@@ -136,3 +136,6 @@ data/ML_model
 data/index_search
 data/baseline_unzip
 data/baseline_split
+data/baseline_input
+datasets/clothing/data
+datasets/kais_apparel/data

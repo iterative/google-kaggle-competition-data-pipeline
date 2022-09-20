@@ -15,6 +15,13 @@ Download with
 dvc get https://github.com/iterative/google-kaggle-competition-data-pipeline datasets/<dataset_name> -o datasets --rev <commit_hash>
 ```
 
+For more examples, please, install the prepared Python package
+```
+pip install git+https://github.com//iterative/google-kaggle-competition-data-pipeline.git#egg=dataset_utils\&subdirectory=dataset_utils_package
+```
+and see the examples in [notebooks folder](notebooks).
+
+
 
 ## Introduction
 
