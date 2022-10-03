@@ -20,7 +20,7 @@ dvc get https://github.com/iterative/google-kaggle-competition-data-pipeline dat
 
 ## Introduction
 
-This repository contains various datasets for the [Kaggle competition](https://www.kaggle.com/competitions/google-universal-image-embedding). These datasets is further used in the:
+This repository contains various datasets for the [Kaggle competition](https://www.kaggle.com/competitions/google-universal-image-embedding). These datasets are further used in the:
 - [ML pipeline](https://github.com/iterative/google-kaggle-competition)
 - [Similarity index pipeline](https://github.com/mnrozhkov/google-universal-image-embedding)
 
@@ -38,7 +38,7 @@ Note the [Voxel51](https://voxel51.com/) is a dependency for this package.
 
 ### Download dataset
 
-Each dataset is split to 10 zip files, such that you can download even a portion of the dataset. The split is done in a way that the distribution of classes in each zip file is the same as for the whole dataset. You can download the whole dataset and unzip it with the following Python method.
+Each dataset is split into 10 zip files, such that you can download even a portion of the dataset. The split is done in a way that the distribution of classes in each zip file is the same as for the whole dataset. You can download the whole dataset and unzip it with the following Python method.
 ```
 from pathlib import Path
 from dataset_utils.download_utils import prepare_dataset
@@ -60,25 +60,13 @@ For end-to-end example or downloading only a portion of dataset, please see [pre
 For instructions how to merge or share datasets, please see [merge_datasets notebook](notebooks/prepare_dataset_for_ML.ipynb) as it gives the end-to-end example.
 
 
-<!-- ## DVC pipeline
-The project is implemented in a DVC pipeline. The definition of the pipeline consists of two parts:
-
-- `dvc.yaml` --- main file defining stages with: cli command, dependencies and outputs
-- `params.yaml` --- parameters of the pipeline such as paths, split ratios etc.
-
-Each stage is defined in a separate python file in `src` folder. At this moment there are two stages:
-- `unzip_dataset` - unzips file with all data
-- `split_dataset` - splits data to train/val/test datasets. The split ratio is defined in `params.yaml` file.
-- `zip_dataset` - zips the train/val/test folders from the previous stage into one zip file. -->
-
-
-### How to prepare new dataset
+### How to prepare a new dataset
 
 You may get inspired by `prepare_data.ipynb` that is in the folder of each dataset. In general, the workflow for creating a new dataset is as follows:
 1) Download the original dataset with labels.
 2) Load the dataset with labels into Voxel51 and do some preprocessing if it is needed.
 3) Export the dataset in `FiftyOneImageClassificationDataset` export format.
-4) Do stratified split of the dataset to multiple zip files if you want. Attach information about the partition into the `label.json` file.
+4) Do a stratified split of the dataset to multiple zip files if you want. Attach information about the partition into the `label.json` file.
 5) Upload the zip files to the cloud storage.
 
 
@@ -91,105 +79,3 @@ source .venv/bin/activate
 pip install --upgrade pip
 pip install -r requirements.txt
 ```
-<!-- 
-
-Download the input data (`baseline.zip` file) into your local folder `data` with
-```
-dvc get https://github.com/iterative/google-kaggle-competition-data-pipeline data/baseline.zip -o data --rev v1.1
-```
-You also can prepare your own custom data. To do that, you need to make sure that the zip file contains the folder structure described in [Input to the pipeline](#Input-to-the-pipeline) section.
-
-### How to run the project
-The project can be run by running the DVC pipeline with
-```
-dvc repro
-```
-
-### Input to the pipeline
-The input to the pipeline is a zip file that shall contain the following folder structure (the naming of the folder classes or images does not matter):
-```
-apparel/
-    0.png
-    1.png
-    ...
-artwork/
-    0.png
-    1.png
-    ...
-toys/
-    ...
-```
-
-The filepath to the zip file is specified in `params.yaml` file, under the key `unzip_dataset.input_file`. The input zip file is in our case named `baseline.zip` 
-
-If you are more interested how the `dvc` command works in this case, you may read more in [Data registry documentation](https://dvc.org/doc/use-cases/data-registry#data-registry).
-
-
-### Output of the pipeline
-The output of the pipeline is a zip file that contains split dataset with the following folder structure
-```
-train/
-    apparel/
-        1.png
-        ...
-    artwork/
-        1.png
-        ...
-    ...
-    toys/
-        1.png
-        ...
-val/
-    apparel/
-        0.png
-        ...
-    artwork/
-        0.png
-        ...
-    ...
-    toys/
-        0.png
-        ...
-test/
-    apparel/
-        6.png
-        ...
-    artwork/
-        14.png
-        ...
-    ...
-    toys/
-        14.png
-        ...
-```
-Note that the image names may differ if you use different seed. Also, note that if you use your custom dataset the names of the classes may differ. The filepath to the output zip file is specified in `params.yaml` file.
-
-## How to setup local environment for a different pipeline
-In case, you would like to use the output of this pipeline, you need to set up your local environment as follows
-
-Сreate, activate a virtual environment, and install dvc package.
-```
-python -m venv .venv
-source .venv/bin/activate
-pip install --upgrade pip
-pip install dvc[s3]
-```
-
-Initialize the folder with `git` and `dvc` and download the prepared data (no credentials are required)
-```
-git init
-dvc init
-dvc get https://github.com/iterative/google-kaggle-competition-data-pipeline data/baseline_split.zip --rev v1.1
-```
-
-In the case, you would like to download the uncompressed split you run
-```
-dvc get https://github.com/iterative/google-kaggle-competition-data-pipeline data/baseline_split --rev v1.1
-```
-
-You can also download just some particular part of the data. In that case, you specify a folder to download. For example, like this
-```
-dvc get https://github.com/iterative/google-kaggle-competition-data-pipeline data/baseline_split/train/apparel --rev v1.1
-```
-
-You may also be interested in [`dvc import` command](https://dvc.org/doc/use-cases/data-registry#data-import-workflow) in case you would like to integrate this data into a DVC pipeline. -->
