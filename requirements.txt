@@ -1,2 +1,2 @@
 dvc[s3]
-split-folders
+git+https://github.com//iterative/google-kaggle-competition-data-pipeline.git#egg=dataset_utils&subdirectory=dataset_utils_package
